@@ -48,9 +48,9 @@ function printHelp() {
   qa-testing-skills — AI-powered QA testing prompts for any agent
 
   Usage:
-    npx qa-testing-skills init [platform]    Install prompts into your project
-    npx qa-testing-skills list               List available prompts
-    npx qa-testing-skills help               Show this help
+    npx @aktibaba/qa-testing-skills init [platform]    Install prompts into your project
+    npx @aktibaba/qa-testing-skills list               List available prompts
+    npx @aktibaba/qa-testing-skills help               Show this help
 
   Platforms:
     claude      → .claude/commands/     (use as /qa-api, /qa-ui, etc.)
@@ -60,9 +60,9 @@ function printHelp() {
     generic     → prompts/              (copy-paste into any AI tool)
 
   Examples:
-    npx qa-testing-skills init              Auto-detect platform
-    npx qa-testing-skills init claude       Install for Claude Code
-    npx qa-testing-skills init generic      Install as plain markdown files
+    npx @aktibaba/qa-testing-skills init              Auto-detect platform
+    npx @aktibaba/qa-testing-skills init claude       Install for Claude Code
+    npx @aktibaba/qa-testing-skills init generic      Install as plain markdown files
 `);
 }
 

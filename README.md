@@ -7,7 +7,7 @@ One command to install. Zero dependencies. Just markdown prompts that turn any A
 ## Quick Start
 
 ```bash
-npx qa-testing-skills init
+npx @aktibaba/qa-testing-skills init
 ```
 
 That's it. The CLI auto-detects your AI tool and installs the prompts in the right place.
@@ -15,11 +15,11 @@ That's it. The CLI auto-detects your AI tool and installs the prompts in the rig
 ### Platform-specific install
 
 ```bash
-npx qa-testing-skills init claude      # → .claude/commands/
-npx qa-testing-skills init cursor      # → .cursor/rules/
-npx qa-testing-skills init windsurf    # → .windsurf/rules/
-npx qa-testing-skills init copilot     # → .github/copilot-instructions.md
-npx qa-testing-skills init generic     # → prompts/ (copy-paste anywhere)
+npx @aktibaba/qa-testing-skills init claude      # → .claude/commands/
+npx @aktibaba/qa-testing-skills init cursor      # → .cursor/rules/
+npx @aktibaba/qa-testing-skills init windsurf    # → .windsurf/rules/
+npx @aktibaba/qa-testing-skills init copilot     # → .github/copilot-instructions.md
+npx @aktibaba/qa-testing-skills init generic     # → prompts/ (copy-paste anywhere)
 ```
 
 ## Available Prompts
@@ -40,7 +40,7 @@ npx qa-testing-skills init generic     # → prompts/ (copy-paste anywhere)
 
 ### Claude Code
 ```bash
-# After running: npx qa-testing-skills init claude
+# After running: npx @aktibaba/qa-testing-skills init claude
 claude /qa-api        # Generate API tests for your project
 claude /qa-ui         # Generate E2E tests
 claude /qa-ci         # Setup CI pipeline with quality gates
@@ -52,7 +52,7 @@ Prompts are auto-loaded as rules. Just ask:
 
 ### ChatGPT / Gemini / Any LLM
 ```bash
-npx qa-testing-skills init generic
+npx @aktibaba/qa-testing-skills init generic
 ```
 Then copy-paste the relevant prompt file from `prompts/` into your chat.
 
