@@ -1,0 +1,33 @@
+{
+  "name": "qa-testing-skills",
+  "version": "1.0.0",
+  "description": "AI-powered QA testing prompts for any agent — Claude, Cursor, Copilot, Windsurf, ChatGPT, and more",
+  "bin": {
+    "qa-testing-skills": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "prompts/"
+  ],
+  "keywords": [
+    "qa",
+    "testing",
+    "test-automation",
+    "playwright",
+    "cypress",
+    "api-testing",
+    "security-testing",
+    "performance-testing",
+    "ci-cd",
+    "claude",
+    "cursor",
+    "copilot",
+    "ai-prompts"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

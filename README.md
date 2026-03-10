@@ -1,98 +1,98 @@
 # QA Testing Skills
 
-A modular, AI-driven QA architect system that provides risk-based test strategy, test automation guidance, environment management, security testing, performance validation, and release gate decisions.
+AI-powered QA testing prompts that work with **any AI agent** — Claude Code, Cursor, Windsurf, GitHub Copilot, ChatGPT, Gemini, or any LLM.
 
-**Stack-agnostic** — works with any language, framework, or CI/CD platform.
+One command to install. Zero dependencies. Just markdown prompts that turn any AI into a QA architect.
 
-## Architecture
+## Quick Start
 
-```
-src/
-├── module.yaml                    # Module configuration & variables
-├── agents/
-│   └── qa.agent.yaml              # QA Architect agent persona & menu
-├── qa/
-│   ├── qa-index.csv               # Knowledge fragment index (35 entries)
-│   └── knowledge/                 # 35 reusable knowledge fragments
-│       ├── docker-test-env.md
-│       ├── api-testing-fundamentals.md
-│       ├── risk-based-testing.md
-│       └── ... (32 more)
-└── workflows/qa/
-    ├── env/                       # Docker test environment setup
-    ├── api/                       # API testing
-    ├── ui/                        # UI/E2E testing
-    ├── int/                       # Integration testing
-    ├── perf/                      # Performance testing
-    ├── sec/                       # Security testing
-    ├── rv/                        # Test quality review
-    ├── ci/                        # CI/CD pipeline setup
-    └── reg/                       # Regression testing
+```bash
+npx qa-testing-skills init
 ```
 
-## Workflows
+That's it. The CLI auto-detects your AI tool and installs the prompts in the right place.
 
-| Trigger | Workflow | Description |
-|---------|----------|-------------|
-| **ENV** | Docker Environment | Setup reproducible Docker-based test environments |
-| **API** | API Testing | Design and implement API test suites (REST, GraphQL, gRPC) |
-| **UI**  | UI/E2E Testing | Browser automation and end-to-end test design |
-| **INT** | Integration Testing | Test service interactions, webhooks, messaging |
-| **PERF**| Performance Testing | Load testing, stress testing, benchmarks |
-| **SEC** | Security Testing | Vulnerability scanning, penetration test guidance |
-| **RV**  | Test Review | Quality scoring and best practices validation |
-| **CI**  | CI/CD Pipeline | Quality pipeline with test stages and gates |
-| **REG** | Regression Testing | Build and maintain regression suites |
+### Platform-specific install
 
-## Workflow Modes
+```bash
+npx qa-testing-skills init claude      # → .claude/commands/
+npx qa-testing-skills init cursor      # → .cursor/rules/
+npx qa-testing-skills init windsurf    # → .windsurf/rules/
+npx qa-testing-skills init copilot     # → .github/copilot-instructions.md
+npx qa-testing-skills init generic     # → prompts/ (copy-paste anywhere)
+```
 
-Every workflow supports **tri-modal execution**:
+## Available Prompts
 
-- **[C] Create** — Run the full workflow from scratch
-- **[R] Resume** — Resume an interrupted workflow
-- **[V] Validate** — Validate existing outputs against checklist
-- **[E] Edit** — Revise existing outputs
+| Prompt | What it does |
+|--------|-------------|
+| **qa-api** | Design and generate API test suites (REST, GraphQL, gRPC) |
+| **qa-ui** | Browser automation and E2E tests (Playwright, Cypress, Selenium) |
+| **qa-env** | Docker-based reproducible test environments |
+| **qa-int** | Integration tests for service interactions, databases, queues |
+| **qa-perf** | Load testing, stress testing, benchmarks (k6, Locust, Artillery) |
+| **qa-sec** | Security testing — OWASP Top 10, scanning, vulnerability detection |
+| **qa-ci** | CI/CD pipeline with quality gates (GitHub Actions, GitLab CI, Jenkins) |
+| **qa-reg** | Regression suite organization — smoke, sanity, full regression tiers |
+| **qa-rv** | Test quality review — scored audit with actionable recommendations |
 
-## Knowledge Base
+## Usage Examples
 
-35 knowledge fragments organized in 3 tiers:
+### Claude Code
+```bash
+# After running: npx qa-testing-skills init claude
+claude /qa-api        # Generate API tests for your project
+claude /qa-ui         # Generate E2E tests
+claude /qa-ci         # Setup CI pipeline with quality gates
+```
 
-- **Core** (18 fragments) — Always relevant: Docker environments, API testing, test isolation, risk-based testing, CI pipelines, security, performance, regression design
-- **Extended** (12 fragments) — Loaded on demand: GraphQL, POM, visual regression, contract testing, accessibility, parallel execution, database testing
-- **Specialized** (5 fragments) — Context-specific: email testing, file uploads, mobile testing, microservice patterns
+### Cursor / Windsurf
+Prompts are auto-loaded as rules. Just ask:
+> "Use qa-api to generate tests for my Express API"
+
+### ChatGPT / Gemini / Any LLM
+```bash
+npx qa-testing-skills init generic
+```
+Then copy-paste the relevant prompt file from `prompts/` into your chat.
+
+## What Each Prompt Does
+
+Every prompt follows the same pattern:
+
+1. **Discovery** — Scans your project, detects stack, framework, existing tests
+2. **Strategy** — Designs a risk-based test plan prioritized by business impact
+3. **Generation** — Creates test files, configs, and helpers ready to run
+4. **Validation** — Checks output against a quality checklist
+5. **Report** — Provides run commands, coverage summary, and recommendations
 
 ## Supported Stacks
 
 - **Languages**: JavaScript/TypeScript, Python, Go, Java, C#, Ruby, PHP
-- **Test Frameworks**: Playwright, Cypress, Jest, pytest, JUnit, Go test, xUnit, RSpec, Mocha, Vitest, Selenium, Appium
-- **CI/CD**: GitHub Actions, GitLab CI, Jenkins, Azure Pipelines, CircleCI, Harness, Bitbucket Pipelines
+- **Test Frameworks**: Playwright, Cypress, Jest, pytest, JUnit, Go test, xUnit, RSpec, Mocha, Vitest, Selenium
+- **CI/CD**: GitHub Actions, GitLab CI, Jenkins, Azure Pipelines, CircleCI, Bitbucket Pipelines
 - **Performance**: k6, Locust, Artillery, JMeter, Gatling
 - **Security**: Semgrep, Trivy, Snyk, ZAP
 - **Containers**: Docker, Podman, nerdctl
 
-## Configuration
-
-Edit `module.yaml` to customize:
-
-```yaml
-variables:
-  test_stack_type: "auto"          # auto | frontend | backend | fullstack | mobile
-  test_framework: "auto"           # auto | playwright | cypress | jest | pytest | ...
-  ci_platform: "auto"             # auto | github-actions | gitlab-ci | jenkins | ...
-  use_docker: true                 # Docker-based test environments
-  container_runtime: "docker"      # docker | podman | nerdctl
-  communication_language: "en"     # ISO 639-1 language code
-```
-
 ## How It Works
 
-1. **Agent loads** → reads `qa.agent.yaml` persona and menu
-2. **User triggers workflow** → e.g., "API" starts the API testing workflow
-3. **Mode selection** → Create / Resume / Validate / Edit
-4. **Step-by-step execution** → Each step file loads sequentially (just-in-time)
-5. **Knowledge injection** → Relevant fragments loaded from `qa-index.csv`
-6. **Output generation** → Tests, configs, reports saved to project
-7. **Validation** → Outputs checked against quality checklist
+Each prompt is a self-contained markdown file that instructs any AI to act as a QA architect. No runtime, no dependencies, no API keys needed.
+
+```
+prompts/
+├── qa-api.md      # API testing prompt
+├── qa-ui.md       # UI/E2E testing prompt
+├── qa-env.md      # Docker environment prompt
+├── qa-int.md      # Integration testing prompt
+├── qa-perf.md     # Performance testing prompt
+├── qa-sec.md      # Security testing prompt
+├── qa-ci.md       # CI/CD pipeline prompt
+├── qa-reg.md      # Regression testing prompt
+└── qa-rv.md       # Test review prompt
+```
+
+The CLI just copies these files to the right location for your AI tool. That's the whole trick.
 
 ## License
 
