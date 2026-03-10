@@ -1,5 +1,5 @@
 {
-  "name": "qa-testing-skills",
+  "name": "@aktibaba/qa-testing-skills",
   "version": "1.0.0",
   "description": "AI-powered QA testing prompts for any agent — Claude, Cursor, Copilot, Windsurf, ChatGPT, and more",
   "bin": {
