@@ -1,0 +1,43 @@
+###############################################################################
+# Teach Me Testing Workflow — Configuration
+###############################################################################
+
+name: qa-tmt
+description: "Progressive QA education sessions"
+
+variables:
+  learner_level:
+    type: string
+    values: ["auto", "beginner", "intermediate", "advanced"]
+    default: "auto"
+    description: "Learner's current testing knowledge level — auto-assessed if set to auto"
+
+  learner_stack:
+    type: string
+    default: "auto"
+    description: "Learner's primary technology stack — auto-detected when set to auto"
+
+  session_duration:
+    type: string
+    default: "30m"
+    description: "Target duration for each teaching session"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/tmt-session-log.md"
+    description: "Default output file for session log"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-assess-level.md"
+    description: "Start a new learning session with level assessment"
+  resume:
+    entry: "steps-c/step-01b-continue.md"
+    description: "Continue from a previous learning session"
+  validate:
+    entry: "steps-v/step-v-01-validate.md"
+    description: "Validate learning progress and knowledge retention"

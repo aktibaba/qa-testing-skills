@@ -1,0 +1,52 @@
+###############################################################################
+# CI/CD Pipeline Workflow — Configuration
+###############################################################################
+
+name: qa-ci
+description: "Scaffold CI/CD quality pipeline with test stages"
+
+variables:
+  ci_platform:
+    type: string
+    values: ["auto", "github-actions", "gitlab-ci", "jenkins", "azure-pipelines", "circleci", "bitbucket-pipelines", "harness", "drone"]
+    default: "auto"
+    description: "CI/CD platform — auto-detected from existing config when set to auto"
+
+  test_framework:
+    type: string
+    values: ["auto", "jest", "pytest", "junit", "go-test", "vitest", "mocha", "rspec", "playwright", "cypress"]
+    default: "auto"
+    description: "Test framework — auto-detected when set to auto"
+
+  coverage_threshold:
+    type: number
+    default: 80
+    description: "Minimum code coverage percentage to pass quality gate"
+
+  test_parallelism:
+    type: number
+    default: 1
+    description: "Number of parallel test runners"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/ci-pipeline-summary.md"
+    description: "Default output file for pipeline summary"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Create a new CI/CD pipeline configuration from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted CI pipeline workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing CI pipeline"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate existing CI pipeline against quality standards"

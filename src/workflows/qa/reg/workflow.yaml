@@ -1,0 +1,51 @@
+###############################################################################
+# Regression Testing Workflow — Configuration
+###############################################################################
+
+name: qa-reg
+description: "Build and maintain regression test suites"
+
+variables:
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  test_framework:
+    type: string
+    values: ["auto", "jest", "pytest", "junit", "go-test", "vitest", "mocha", "rspec", "playwright", "cypress"]
+    default: "auto"
+    description: "Test framework — auto-detected when set to auto"
+
+  execution_time_budget:
+    type: string
+    default: "10m"
+    description: "Maximum allowed execution time for the full regression suite"
+
+  smoke_time_budget:
+    type: string
+    default: "2m"
+    description: "Maximum allowed execution time for the smoke test suite"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/reg-suite-summary.md"
+    description: "Default output file for regression suite summary"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Build a new regression test suite from existing tests"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted regression suite workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing regression suite"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate regression suite against quality standards"

@@ -1,0 +1,15 @@
+name: qa-api
+description: 'Design and implement API test suites for REST, GraphQL, and gRPC'
+config_source: "{project-root}/_qa/config.yaml"
+output_folder: "{test_artifacts}"
+installed_path: "{project-root}/_qa/workflows/qa/api"
+instructions: "installed_path/instructions.md"
+validation: "installed_path/checklist.md"
+variables:
+  api_base_url: ""
+  api_auth_type: "none"
+  test_framework: "auto"
+  test_dir: "{project-root}/tests"
+default_output_file: "{test_dir}/api/"
+required_tools: [read_file, write_file, create_directory, list_files, search_repo]
+execution_hints: {interactive: false, autonomous: true, iterative: true}

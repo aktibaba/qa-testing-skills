@@ -1,0 +1,51 @@
+###############################################################################
+# Performance Testing Workflow — Configuration
+###############################################################################
+
+name: qa-perf
+description: "Design and execute performance test suites"
+
+variables:
+  perf_tool:
+    type: string
+    values: ["auto", "k6", "locust", "artillery", "jmeter", "gatling"]
+    default: "auto"
+    description: "Performance testing tool — auto-detected from project dependencies when set to auto"
+
+  perf_target_rps:
+    type: number
+    default: 100
+    description: "Target requests per second for load tests"
+
+  perf_duration:
+    type: string
+    default: "5m"
+    description: "Default duration for performance test runs"
+
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/performance-report.md"
+    description: "Default output file for performance test report"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Create a new performance test suite from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted performance testing workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing performance test suite"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate existing performance tests against quality checklist"

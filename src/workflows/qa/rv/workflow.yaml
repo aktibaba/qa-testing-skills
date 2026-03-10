@@ -1,0 +1,47 @@
+###############################################################################
+# Test Review Workflow — Configuration
+###############################################################################
+
+name: qa-rv
+description: "Review test quality using best practices"
+
+variables:
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  test_framework:
+    type: string
+    values: ["auto", "jest", "pytest", "junit", "go-test", "vitest", "mocha", "rspec", "xunit", "playwright", "cypress"]
+    default: "auto"
+    description: "Test framework — auto-detected when set to auto"
+
+  review_scope:
+    type: string
+    values: ["all", "unit", "integration", "e2e", "changed-only"]
+    default: "all"
+    description: "Scope of tests to review"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/rv-quality-report.md"
+    description: "Default output file for quality report"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-load-context.md"
+    description: "Run a full test quality review from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted test review workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing quality report"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate tests against quality checklist"

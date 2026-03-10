@@ -1,0 +1,14 @@
+name: qa-env
+description: 'Setup reproducible Docker-based test environments'
+config_source: "{project-root}/_qa/config.yaml"
+output_folder: "{test_artifacts}"
+installed_path: "{project-root}/_qa/workflows/qa/env"
+instructions: "installed_path/instructions.md"
+validation: "installed_path/checklist.md"
+variables:
+  use_docker: true
+  container_runtime: "docker"
+  docker_compose_file: "docker-compose.test.yml"
+default_output_file: "{project-root}/docker-compose.test.yml"
+required_tools: [read_file, write_file, create_directory, list_files, search_repo]
+execution_hints: {interactive: false, autonomous: true, iterative: true}

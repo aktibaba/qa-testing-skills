@@ -1,0 +1,47 @@
+###############################################################################
+# UI/E2E Testing Workflow — Configuration
+###############################################################################
+
+name: qa-ui
+description: "Design and implement UI/E2E test suites using browser automation"
+
+variables:
+  browser_automation:
+    type: string
+    values: ["auto", "playwright", "cypress", "selenium", "puppeteer", "none"]
+    default: "auto"
+    description: "Browser automation framework — auto-detected from project dependencies when set to auto"
+
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  test_framework:
+    type: string
+    values: ["auto", "playwright", "cypress", "selenium", "puppeteer", "testcafe"]
+    default: "auto"
+    description: "UI test framework — auto-detected when set to auto"
+
+  default_output_file:
+    type: string
+    default: "{test_dir}/e2e/README.md"
+    description: "Default output file for workflow summary"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Create a new UI/E2E test suite from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted UI testing workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing UI test suite"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate existing UI tests against quality checklist"

@@ -1,0 +1,36 @@
+###############################################################################
+# Integration Testing Workflow — Configuration
+###############################################################################
+
+name: qa-int
+description: "Design and implement integration test suites for service interactions"
+
+variables:
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  test_stack_type:
+    type: string
+    values: ["auto", "frontend", "backend", "fullstack", "mobile", "embedded"]
+    default: "auto"
+    description: "Project stack type — auto-detected from source tree when set to auto"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Create a new integration test suite from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted integration testing workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing integration test suite"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate existing integration tests against quality checklist"

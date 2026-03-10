@@ -1,0 +1,46 @@
+###############################################################################
+# Security Testing Workflow — Configuration
+###############################################################################
+
+name: qa-sec
+description: "Security testing and vulnerability assessment"
+
+variables:
+  sec_scan_tool:
+    type: string
+    values: ["auto", "zap", "trivy", "snyk", "semgrep", "none"]
+    default: "auto"
+    description: "Security scanning tool — auto-detected from project dependencies when set to auto"
+
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  api_base_url:
+    type: string
+    default: ""
+    description: "Base URL for the API under test"
+
+  default_output_file:
+    type: string
+    default: "{test_artifacts}/security-report.md"
+    description: "Default output file for security assessment report"
+
+###############################################################################
+# WORKFLOW ENTRY POINTS (TEA Tri-Modal)
+###############################################################################
+
+modes:
+  create:
+    entry: "steps-c/step-01-preflight.md"
+    description: "Create a new security test suite from scratch"
+  resume:
+    entry: "steps-c/step-01b-resume.md"
+    description: "Resume an interrupted security testing workflow"
+  edit:
+    entry: "steps-e/step-01-assess.md"
+    description: "Modify or extend an existing security test suite"
+  validate:
+    entry: "steps-v/step-01-validate.md"
+    description: "Validate existing security tests against quality checklist"

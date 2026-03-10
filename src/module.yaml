@@ -1,0 +1,164 @@
+###############################################################################
+# QA Testing Skills — Module Configuration
+# A general-purpose QA architect system for any project and stack.
+###############################################################################
+
+code: qa
+name: "QA Testing Skills"
+header: "QA Architect — Test Strategy, Automation & Quality Gates"
+description: >
+  A modular, AI-driven QA architect that provides risk-based test strategy,
+  test automation guidance, environment management, security testing,
+  performance validation, and release gate decisions.
+  Stack-agnostic: works with any language, framework, or CI/CD platform.
+
+version: "1.0.0"
+author: "kdr"
+
+###############################################################################
+# CONFIGURATION VARIABLES
+###############################################################################
+
+variables:
+
+  # ── Project Detection ──────────────────────────────────────────────────────
+  test_stack_type:
+    type: string
+    values: ["auto", "frontend", "backend", "fullstack", "mobile", "embedded"]
+    default: "auto"
+    description: "Project type — auto-detected from source tree when set to auto"
+
+  test_framework:
+    type: string
+    values: ["auto", "playwright", "cypress", "jest", "pytest", "junit", "go-test", "xunit", "rspec", "mocha", "vitest", "testcafe", "selenium", "appium", "k6", "locust", "artillery", "jmeter"]
+    default: "auto"
+    description: "Test framework — auto-detected when set to auto"
+
+  ci_platform:
+    type: string
+    values: ["auto", "github-actions", "gitlab-ci", "jenkins", "azure-pipelines", "circleci", "harness", "bitbucket-pipelines", "drone"]
+    default: "auto"
+    description: "CI/CD platform — auto-detected when set to auto"
+
+  # ── Docker & Environment ───────────────────────────────────────────────────
+  use_docker:
+    type: boolean
+    default: true
+    description: "Whether the project uses Docker for test environments"
+
+  docker_compose_file:
+    type: string
+    default: "docker-compose.test.yml"
+    description: "Docker Compose file for test environment"
+
+  container_runtime:
+    type: string
+    values: ["docker", "podman", "nerdctl"]
+    default: "docker"
+    description: "Container runtime to use"
+
+  # ── Test Execution ─────────────────────────────────────────────────────────
+  test_artifacts:
+    type: string
+    default: "{project-root}/test-artifacts"
+    description: "Directory for test outputs, reports, and artifacts"
+
+  test_dir:
+    type: string
+    default: "{project-root}/tests"
+    description: "Root directory for test files"
+
+  execution_mode:
+    type: string
+    values: ["auto", "sequential", "subagent", "agent-team"]
+    default: "auto"
+    description: "Orchestration strategy for multi-step workflows"
+
+  # ── Communication ──────────────────────────────────────────────────────────
+  communication_language:
+    type: string
+    default: "en"
+    description: "Language for agent responses (ISO 639-1 code)"
+
+  user_name:
+    type: string
+    default: ""
+    description: "User name for personalized communication"
+
+  # ── API Testing ────────────────────────────────────────────────────────────
+  api_base_url:
+    type: string
+    default: ""
+    description: "Base URL for API under test"
+
+  api_auth_type:
+    type: string
+    values: ["none", "bearer", "basic", "oauth2", "api-key", "custom"]
+    default: "none"
+    description: "Authentication method for API testing"
+
+  # ── Performance Testing ────────────────────────────────────────────────────
+  perf_tool:
+    type: string
+    values: ["auto", "k6", "locust", "artillery", "jmeter", "gatling"]
+    default: "auto"
+    description: "Performance testing tool"
+
+  perf_target_rps:
+    type: number
+    default: 100
+    description: "Target requests per second for load tests"
+
+  perf_duration:
+    type: string
+    default: "5m"
+    description: "Default duration for performance test runs"
+
+  # ── Security Testing ───────────────────────────────────────────────────────
+  sec_scan_tool:
+    type: string
+    values: ["auto", "zap", "trivy", "snyk", "semgrep", "none"]
+    default: "auto"
+    description: "Security scanning tool"
+
+  # ── Browser Automation ─────────────────────────────────────────────────────
+  browser_automation:
+    type: string
+    values: ["auto", "playwright", "cypress", "selenium", "puppeteer", "none"]
+    default: "auto"
+    description: "Browser automation framework for UI/E2E testing"
+
+###############################################################################
+# POST-INSTALL NOTES
+###############################################################################
+
+post_install: |
+  ## Quick Start
+
+  1. Set your project type:
+     - test_stack_type: auto | frontend | backend | fullstack | mobile
+
+  2. Configure Docker (if applicable):
+     - use_docker: true
+     - docker_compose_file: docker-compose.test.yml
+     - container_runtime: docker | podman
+
+  3. Set your test framework:
+     - test_framework: auto | playwright | cypress | jest | pytest | ...
+
+  4. Configure CI platform:
+     - ci_platform: auto | github-actions | gitlab-ci | jenkins | ...
+
+  ## Workflow Triggers
+
+  Use these triggers in your AI tool:
+  - ENV  → Docker test environment setup
+  - API  → API testing workflow
+  - UI   → UI/E2E testing workflow
+  - INT  → Integration testing workflow
+  - PERF → Performance testing workflow
+  - SEC  → Security testing workflow
+  - RV   → Test quality review
+  - CI   → CI/CD pipeline setup
+  - REG  → Regression testing workflow
+  - TMT  → Teach Me Testing (education)

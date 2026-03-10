@@ -1,0 +1,36 @@
+id,name,description,tags,tier,fragment_file
+01,docker-test-env,"Docker-based test environment patterns and best practices","docker,container,environment,compose",core,docker-test-env.md
+02,docker-compose-patterns,"Docker Compose patterns for multi-service test setups","docker,compose,services,networking",core,docker-compose-patterns.md
+03,api-testing-fundamentals,"REST API testing patterns — request/response validation","api,rest,http,validation",core,api-testing-fundamentals.md
+04,api-auth-testing,"Authentication and authorization testing patterns","api,auth,jwt,oauth,rbac",core,api-auth-testing.md
+05,graphql-testing,"GraphQL query and mutation testing patterns","api,graphql,query,mutation",extended,graphql-testing.md
+06,test-data-management,"Test data factories, fixtures, and seeding strategies","data,factory,fixture,seed",core,test-data-management.md
+07,test-isolation,"Test isolation patterns — independent and repeatable tests","isolation,cleanup,parallel,deterministic",core,test-isolation.md
+08,risk-based-testing,"Risk-based test prioritization and coverage strategy","risk,priority,coverage,strategy",core,risk-based-testing.md
+09,selector-resilience,"Resilient UI selectors — data-testid, ARIA, and anti-patterns","ui,selector,testid,aria,locator",core,selector-resilience.md
+10,network-first-testing,"Network-first testing — intercept and mock HTTP traffic","network,intercept,mock,stub,api",core,network-first-testing.md
+11,page-object-model,"Page Object Model and component abstraction patterns","ui,pom,abstraction,component",extended,page-object-model.md
+12,visual-regression,"Visual regression testing with screenshot comparison","visual,screenshot,regression,pixel",extended,visual-regression.md
+13,contract-testing,"Consumer-driven contract testing patterns","contract,pact,consumer,provider",extended,contract-testing.md
+14,performance-load-testing,"Load testing patterns with k6, Locust, Artillery","performance,load,stress,k6,locust",core,performance-load-testing.md
+15,performance-metrics,"Key performance metrics — TTFB, P95, throughput, error rate","metrics,latency,throughput,sla",extended,performance-metrics.md
+16,security-testing-owasp,"OWASP Top 10 testing checklist and patterns","security,owasp,vulnerability,injection",core,security-testing-owasp.md
+17,security-container-scanning,"Container image scanning and supply chain security","security,container,trivy,scan,sbom",extended,security-container-scanning.md
+18,ci-pipeline-testing,"CI/CD pipeline design for test automation","ci,cd,pipeline,github-actions,gitlab",core,ci-pipeline-testing.md
+19,ci-quality-gates,"Quality gate criteria and release readiness","ci,gate,release,threshold,coverage",core,ci-quality-gates.md
+20,test-reporting,"Test reporting, dashboards, and metrics visualization","reporting,allure,html,dashboard",extended,test-reporting.md
+21,flaky-test-management,"Detecting, quarantining, and fixing flaky tests","flaky,retry,quarantine,deterministic",core,flaky-test-management.md
+22,database-testing,"Database testing — migrations, integrity, seed data","database,migration,seed,integrity",extended,database-testing.md
+23,webhook-testing,"Webhook and event-driven testing patterns","webhook,event,callback,async",extended,webhook-testing.md
+24,email-testing,"Email testing patterns — SMTP mock, mailbox verification","email,smtp,mock,verification",specialized,email-testing.md
+25,file-upload-testing,"File upload and download testing patterns","file,upload,download,s3,storage",specialized,file-upload-testing.md
+26,mobile-testing,"Mobile testing patterns with Appium and Detox","mobile,appium,detox,ios,android",specialized,mobile-testing.md
+27,accessibility-testing,"Accessibility testing — WCAG, axe, screen readers","a11y,accessibility,wcag,axe,aria",extended,accessibility-testing.md
+28,test-environment-teardown,"Environment cleanup and teardown strategies","teardown,cleanup,docker,reset",core,test-environment-teardown.md
+29,parallel-test-execution,"Parallel test execution and sharding strategies","parallel,shard,concurrent,worker",extended,parallel-test-execution.md
+30,retry-and-timeout-patterns,"Retry logic and timeout configuration best practices","retry,timeout,wait,poll",core,retry-and-timeout-patterns.md
+31,microservice-testing,"Testing microservice architectures — service mesh, saga","microservice,service,saga,distributed",specialized,microservice-testing.md
+32,regression-suite-design,"Building and maintaining effective regression suites","regression,suite,smoke,sanity",core,regression-suite-design.md
+33,test-naming-conventions,"Test naming and organization conventions","naming,convention,structure,organize",extended,test-naming-conventions.md
+34,mock-stub-spy,"Mock, stub, and spy patterns for unit and integration tests","mock,stub,spy,fake,double",core,mock-stub-spy.md
+35,error-handling-testing,"Testing error paths, edge cases, and failure modes","error,edge-case,boundary,negative",extended,error-handling-testing.md
