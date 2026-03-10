@@ -82,3 +82,7 @@ agent:
       trigger: "REG"
       workflow: "workflows/qa/reg"
       description: "Regression Testing — Build and maintain regression suites"
+    UNIT:
+      trigger: "UNIT"
+      workflow: "workflows/qa/unit"
+      description: "Unit Testing — Isolated function/method tests with mocking"

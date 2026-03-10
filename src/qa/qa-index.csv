@@ -34,3 +34,4 @@ id,name,description,tags,tier,fragment_file
 33,test-naming-conventions,"Test naming and organization conventions","naming,convention,structure,organize",extended,test-naming-conventions.md
 34,mock-stub-spy,"Mock, stub, and spy patterns for unit and integration tests","mock,stub,spy,fake,double",core,mock-stub-spy.md
 35,error-handling-testing,"Testing error paths, edge cases, and failure modes","error,edge-case,boundary,negative",extended,error-handling-testing.md
+36,unit-testing-fundamentals,"Unit testing patterns — AAA, mocking boundaries, factories, parameterized tests","unit,mock,factory,aaa,isolation",core,unit-testing-fundamentals.md

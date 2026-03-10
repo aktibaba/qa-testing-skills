@@ -6,7 +6,7 @@ const path = require('path');
 const PROMPTS_DIR = path.join(__dirname, '..', 'prompts');
 const PROMPTS = [
   'qa-api', 'qa-ui', 'qa-env', 'qa-sec',
-  'qa-perf', 'qa-int', 'qa-ci', 'qa-reg', 'qa-rv'
+  'qa-perf', 'qa-int', 'qa-ci', 'qa-reg', 'qa-rv', 'qa-unit'
 ];
 
 const PLATFORMS = {
@@ -78,6 +78,7 @@ function listPrompts() {
     'qa-ci':   'CI/CD Pipeline — Quality pipeline with test stages',
     'qa-reg':  'Regression Testing — Suite organization, smoke/sanity/full',
     'qa-rv':   'Test Review — Quality scoring and best practices audit',
+    'qa-unit': 'Unit Testing — Isolated function/method tests with mocking',
   };
   for (const [key, desc] of Object.entries(descriptions)) {
     console.log(`    ${key.padEnd(12)} ${desc}`);
@@ -152,6 +153,7 @@ function init(platformArg) {
     console.log('    /qa-ci      → CI/CD pipeline with quality gates');
     console.log('    /qa-reg     → Organize regression suite');
     console.log('    /qa-rv      → Review test quality');
+    console.log('    /qa-unit    → Generate unit tests');
   } else if (platformKey === 'generic') {
     console.log('  Prompt files saved to prompts/ directory.');
     console.log('  Copy-paste any file into your AI tool of choice.');

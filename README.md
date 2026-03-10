@@ -35,6 +35,7 @@ npx @aktibaba/qa-testing-skills init generic     # → prompts/ (copy-paste anyw
 | **qa-ci** | CI/CD pipeline with quality gates (GitHub Actions, GitLab CI, Jenkins) |
 | **qa-reg** | Regression suite organization — smoke, sanity, full regression tiers |
 | **qa-rv** | Test quality review — scored audit with actionable recommendations |
+| **qa-unit** | Unit testing — isolated function/method tests with mocking |
 
 ## Usage Examples
 
@@ -89,7 +90,8 @@ prompts/
 ├── qa-sec.md      # Security testing prompt
 ├── qa-ci.md       # CI/CD pipeline prompt
 ├── qa-reg.md      # Regression testing prompt
-└── qa-rv.md       # Test review prompt
+├── qa-rv.md       # Test review prompt
+└── qa-unit.md     # Unit testing prompt
 ```
 
 The CLI just copies these files to the right location for your AI tool. That's the whole trick.

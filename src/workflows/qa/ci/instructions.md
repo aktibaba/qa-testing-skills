@@ -24,6 +24,7 @@ Before generating pipeline configurations, consult `qa-index.csv` for:
 - `ci-pipeline-testing` (id: 18) — Pipeline design patterns
 - `ci-quality-gates` (id: 19) — Quality gate criteria
 - `test-reporting` (id: 20) — Test reporting and dashboards
+- `unit-testing-fundamentals` (id: 36) — Unit testing patterns
 - `parallel-test-execution` (id: 29) — Parallel execution strategies
 
 ## PIPELINE STAGE ORDER

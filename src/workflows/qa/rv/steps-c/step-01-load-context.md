@@ -51,7 +51,7 @@ Based on `{review_scope}`:
 ### 3. Consult qa-index.csv
 
 Load `qa-index.csv` and select fragments relevant to the detected stack:
-- Always load: `test-isolation` (07), `flaky-test-management` (21), `test-naming-conventions` (33), `mock-stub-spy` (34)
+- Always load: `test-isolation` (07), `flaky-test-management` (21), `test-naming-conventions` (33), `mock-stub-spy` (34), `unit-testing-fundamentals` (36)
 - If UI tests detected: `selector-resilience` (09), `page-object-model` (11)
 - If API tests detected: `api-testing-fundamentals` (03)
 - If performance tests detected: `performance-load-testing` (14)

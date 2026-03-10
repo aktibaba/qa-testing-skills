@@ -25,6 +25,7 @@ Before evaluating tests, consult `qa-index.csv` for relevant knowledge fragments
 - `flaky-test-management` (id: 21) — Flaky test detection
 - `mock-stub-spy` (id: 34) — Mock/stub/spy patterns
 - `error-handling-testing` (id: 35) — Error path coverage
+- `unit-testing-fundamentals` (id: 36) — Unit testing patterns (AAA, factories, parameterized)
 
 Load the relevant fragments from `knowledge/` before scoring.
 

@@ -26,6 +26,7 @@ Before building regression suites, consult `qa-index.csv` for:
 - `flaky-test-management` (id: 21) — Flaky test handling
 - `parallel-test-execution` (id: 29) — Parallel execution strategies
 - `test-isolation` (id: 07) — Isolation patterns
+- `unit-testing-fundamentals` (id: 36) — Unit testing patterns
 
 ## SUITE TIERS
 
