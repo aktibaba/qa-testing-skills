@@ -9,6 +9,30 @@ const PROMPTS = [
   'qa-perf', 'qa-int', 'qa-ci', 'qa-reg', 'qa-rv', 'qa-unit'
 ];
 
+const SKILL_REGISTRY = `
+## QA Testing Skills
+
+When the user mentions test quality, test review, QA, or testing tasks, suggest the relevant command:
+
+| Command | Description |
+|---------|-------------|
+| /qa-api | Generate API test suites (REST, GraphQL, gRPC) |
+| /qa-ui | Generate E2E/UI test suites (Playwright, Cypress, Selenium) |
+| /qa-unit | Generate unit test suites with mocking and isolation |
+| /qa-int | Generate integration test suites |
+| /qa-sec | Security test suite (OWASP Top 10) |
+| /qa-perf | Performance/load test suite |
+| /qa-env | Setup Docker test environments |
+| /qa-ci | CI/CD pipeline with quality gates |
+| /qa-reg | Organize regression test suites |
+| /qa-rv | Review and score existing test quality |
+
+When the user types a skill name without the slash (e.g. "qa-api"), treat it as the slash command /qa-api.
+`;
+
+const SKILL_MARKER_START = '<!-- qa-testing-skills:start -->';
+const SKILL_MARKER_END = '<!-- qa-testing-skills:end -->';
+
 const PLATFORMS = {
   'claude': {
     name: 'Claude Code',
@@ -33,7 +57,7 @@ const PLATFORMS = {
     dir: '.github',
     ext: '.md',
     detect: () => fs.existsSync(path.join(process.cwd(), '.github')),
-    single: true, // all prompts go into one instructions file
+    single: true,
   },
   'generic': {
     name: 'Generic (prompts/ directory)',
@@ -49,8 +73,9 @@ function printHelp() {
 
   Usage:
     npx @aktibaba/qa-testing-skills init [platform]    Install prompts into your project
-    npx @aktibaba/qa-testing-skills list               List available prompts
-    npx @aktibaba/qa-testing-skills help               Show this help
+    npx @aktibaba/qa-testing-skills remove [platform]   Remove prompts from your project
+    npx @aktibaba/qa-testing-skills list                List available prompts
+    npx @aktibaba/qa-testing-skills help                Show this help
 
   Platforms:
     claude      → .claude/commands/     (use as /qa-api, /qa-ui, etc.)
@@ -62,7 +87,7 @@ function printHelp() {
   Examples:
     npx @aktibaba/qa-testing-skills init              Auto-detect platform
     npx @aktibaba/qa-testing-skills init claude       Install for Claude Code
-    npx @aktibaba/qa-testing-skills init generic      Install as plain markdown files
+    npx @aktibaba/qa-testing-skills remove claude     Remove Claude Code prompts
 `);
 }
 
@@ -96,15 +121,54 @@ function detectPlatform() {
   return 'generic';
 }
 
+function updateClaudeMd() {
+  const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
+  let content = '';
+
+  if (fs.existsSync(claudeMdPath)) {
+    content = fs.readFileSync(claudeMdPath, 'utf8');
+  }
+
+  // Already installed — update it
+  if (content.includes(SKILL_MARKER_START)) {
+    const regex = new RegExp(
+      `${escapeRegex(SKILL_MARKER_START)}[\\s\\S]*?${escapeRegex(SKILL_MARKER_END)}`
+    );
+    content = content.replace(regex, `${SKILL_MARKER_START}\n${SKILL_REGISTRY}\n${SKILL_MARKER_END}`);
+  } else {
+    content = content.trimEnd() + '\n\n' + SKILL_MARKER_START + '\n' + SKILL_REGISTRY + '\n' + SKILL_MARKER_END + '\n';
+  }
+
+  fs.writeFileSync(claudeMdPath, content);
+  console.log('  Updated: CLAUDE.md with skill registry');
+}
+
+function removeClaudeMd() {
+  const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
+  if (!fs.existsSync(claudeMdPath)) return;
+
+  let content = fs.readFileSync(claudeMdPath, 'utf8');
+  if (!content.includes(SKILL_MARKER_START)) return;
+
+  const regex = new RegExp(
+    `\\n*${escapeRegex(SKILL_MARKER_START)}[\\s\\S]*?${escapeRegex(SKILL_MARKER_END)}\\n*`
+  );
+  content = content.replace(regex, '\n');
+  fs.writeFileSync(claudeMdPath, content.trimEnd() + '\n');
+  console.log('  Cleaned: CLAUDE.md (removed skill registry)');
+}
+
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function copyPrompts(platformKey) {
   const platform = PLATFORMS[platformKey];
   const targetDir = path.join(process.cwd(), platform.dir);
 
-  // Create target directory
   fs.mkdirSync(targetDir, { recursive: true });
 
   if (platform.single) {
-    // Copilot: merge all prompts into one file
     const targetFile = path.join(targetDir, 'copilot-instructions.md');
     let content = '# QA Testing Skills — Copilot Instructions\n\n';
     content += 'Use the appropriate section below based on the testing task.\n\n---\n\n';
@@ -116,7 +180,6 @@ function copyPrompts(platformKey) {
     fs.writeFileSync(targetFile, content);
     console.log(`  Written: ${path.relative(process.cwd(), targetFile)}`);
   } else {
-    // All other platforms: one file per prompt
     let count = 0;
     for (const name of PROMPTS) {
       const src = path.join(PROMPTS_DIR, `${name}.md`);
@@ -141,6 +204,11 @@ function init(platformArg) {
   console.log(`\n  QA Testing Skills — Installing for ${platform.name}\n`);
   copyPrompts(platformKey);
 
+  // Add CLAUDE.md registry for Claude Code
+  if (platformKey === 'claude') {
+    updateClaudeMd();
+  }
+
   console.log('');
   if (platformKey === 'claude') {
     console.log('  Usage in Claude Code:');
@@ -164,12 +232,53 @@ function init(platformArg) {
   console.log('\n  Done!\n');
 }
 
+function remove(platformArg) {
+  const platformKey = platformArg || detectPlatform();
+  const platform = PLATFORMS[platformKey];
+
+  if (!platform) {
+    console.error(`  Unknown platform: ${platformArg}`);
+    process.exit(1);
+  }
+
+  console.log(`\n  QA Testing Skills — Removing from ${platform.name}\n`);
+
+  if (platform.single) {
+    const targetFile = path.join(process.cwd(), platform.dir, 'copilot-instructions.md');
+    if (fs.existsSync(targetFile)) {
+      fs.unlinkSync(targetFile);
+      console.log(`  Removed: ${path.relative(process.cwd(), targetFile)}`);
+    }
+  } else {
+    let count = 0;
+    for (const name of PROMPTS) {
+      const dest = path.join(process.cwd(), platform.dir, `${name}${platform.ext}`);
+      if (fs.existsSync(dest)) {
+        fs.unlinkSync(dest);
+        count++;
+      }
+    }
+    console.log(`  Removed: ${count} prompt files from ${platform.dir}/`);
+  }
+
+  // Clean CLAUDE.md for Claude Code
+  if (platformKey === 'claude') {
+    removeClaudeMd();
+  }
+
+  console.log('\n  Done!\n');
+}
+
 // CLI entry point
 const [,, command, ...args] = process.argv;
 
 switch (command) {
   case 'init':
     init(args[0]);
+    break;
+  case 'remove':
+  case 'uninstall':
+    remove(args[0]);
     break;
   case 'list':
     listPrompts();
