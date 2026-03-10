@@ -82,7 +82,3 @@ agent:
       trigger: "REG"
       workflow: "workflows/qa/reg"
       description: "Regression Testing — Build and maintain regression suites"
-    TMT:
-      trigger: "TMT"
-      workflow: "workflows/qa/tmt"
-      description: "Teach Me Testing — Progressive QA education sessions"

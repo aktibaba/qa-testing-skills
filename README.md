@@ -27,8 +27,7 @@ src/
     ├── sec/                       # Security testing
     ├── rv/                        # Test quality review
     ├── ci/                        # CI/CD pipeline setup
-    ├── reg/                       # Regression testing
-    └── tmt/                       # Teach Me Testing (education)
+    └── reg/                       # Regression testing
 ```
 
 ## Workflows
@@ -44,7 +43,6 @@ src/
 | **RV**  | Test Review | Quality scoring and best practices validation |
 | **CI**  | CI/CD Pipeline | Quality pipeline with test stages and gates |
 | **REG** | Regression Testing | Build and maintain regression suites |
-| **TMT** | Teach Me Testing | Progressive QA education sessions |
 
 ## Workflow Modes
 
