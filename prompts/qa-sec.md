@@ -42,7 +42,28 @@ Prioritize threats by: **Risk = Likelihood × Impact**
 
 ---
 
-## Step 3 — Authentication & Authorization Tests
+## Step 3 — Present Plan & Get Approval
+
+Present the plan to the user as a concise summary:
+- Detected stack, framework, and tool choices
+- Risk-prioritized list of what will be generated
+- Proposed file/folder structure
+- Key configuration decisions
+- Estimated output (file count, test count, etc.)
+
+**STOP here and wait for user approval. Do NOT generate any files, configs, or code until the user explicitly confirms the plan.**
+
+The user may:
+- Approve as-is → proceed to implementation steps
+- Request changes → revise the plan and present again
+- Reduce or expand scope → adjust accordingly
+- Ask questions → answer before proceeding
+
+Only after receiving explicit approval (e.g., "proceed", "onay", "devam", "looks good"), continue to the next step.
+
+---
+
+## Step 4 — Authentication & Authorization Tests
 
 Generate tests for:
 
@@ -72,7 +93,7 @@ Generate tests for:
 
 ---
 
-## Step 4 — Input Validation & Injection Tests
+## Step 5 — Input Validation & Injection Tests
 
 ### SQL Injection:
 - Classic: `' OR '1'='1`, `'; DROP TABLE users;--`
@@ -108,7 +129,7 @@ Generate tests for:
 
 ---
 
-## Step 5 — Dependency & Container Scanning
+## Step 6 — Dependency & Container Scanning
 
 ### Dependency Scanning:
 - **Node.js**: `npm audit` or `audit-ci`
@@ -137,7 +158,7 @@ Generate a CI pipeline that runs:
 
 ---
 
-## Step 6 — Report & Recommendations
+## Step 7 — Report & Recommendations
 
 After generating all tests:
 

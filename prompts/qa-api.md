@@ -64,7 +64,28 @@ For each endpoint, plan these test types:
 
 ---
 
-## Step 3 — Generate Tests
+## Step 3 — Present Plan & Get Approval
+
+Present the plan to the user as a concise summary:
+- Detected stack, framework, and tool choices
+- Risk-prioritized list of what will be generated
+- Proposed file/folder structure
+- Key configuration decisions
+- Estimated output (file count, test count, etc.)
+
+**STOP here and wait for user approval. Do NOT generate any files, configs, or code until the user explicitly confirms the plan.**
+
+The user may:
+- Approve as-is → proceed to implementation steps
+- Request changes → revise the plan and present again
+- Reduce or expand scope → adjust accordingly
+- Ask questions → answer before proceeding
+
+Only after receiving explicit approval (e.g., "proceed", "onay", "devam", "looks good"), continue to the next step.
+
+---
+
+## Step 4 — Generate Tests
 
 Create the following file structure:
 ```
@@ -100,7 +121,7 @@ describe('[METHOD] /endpoint')
 
 ---
 
-## Step 4 — Auth Tests (Dedicated)
+## Step 5 — Auth Tests (Dedicated)
 
 Generate dedicated authentication and authorization tests:
 
@@ -112,7 +133,7 @@ Generate dedicated authentication and authorization tests:
 
 ---
 
-## Step 5 — Error & Edge Case Tests
+## Step 6 — Error & Edge Case Tests
 
 Generate tests for:
 
@@ -123,7 +144,7 @@ Generate tests for:
 
 ---
 
-## Step 6 — Validate & Report
+## Step 7 — Validate & Report
 
 After generating all tests:
 

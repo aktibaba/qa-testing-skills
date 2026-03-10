@@ -94,7 +94,28 @@ src/                          tests/unit/
 
 ---
 
-## Step 4 — Generate Tests
+## Step 4 — Present Plan & Get Approval
+
+Present the plan to the user as a concise summary:
+- Detected stack, framework, and tool choices
+- Risk-prioritized list of what will be generated
+- Proposed file/folder structure
+- Key configuration decisions
+- Estimated output (file count, test count, etc.)
+
+**STOP here and wait for user approval. Do NOT generate any files, configs, or code until the user explicitly confirms the plan.**
+
+The user may:
+- Approve as-is → proceed to implementation steps
+- Request changes → revise the plan and present again
+- Reduce or expand scope → adjust accordingly
+- Ask questions → answer before proceeding
+
+Only after receiving explicit approval (e.g., "proceed", "onay", "devam", "looks good"), continue to the next step.
+
+---
+
+## Step 5 — Generate Tests
 
 For each function/method, generate tests following this pattern:
 
@@ -205,7 +226,7 @@ jest.mock('../utils/calculateTax'); // just use the real function
 
 ---
 
-## Step 5 — Test Helpers & Factories
+## Step 6 — Test Helpers & Factories
 
 ### Test Factories (generate test data):
 ```javascript
@@ -250,7 +271,7 @@ expect.extend({
 
 ---
 
-## Step 6 — Coverage & Validation
+## Step 7 — Coverage & Validation
 
 ### Coverage Configuration:
 ```javascript
@@ -283,7 +304,7 @@ coveragePathIgnorePatterns: [
 
 ---
 
-## Step 7 — Validate & Report
+## Step 8 — Validate & Report
 
 ### Quality Checklist
 - [ ] Every public function with business logic has unit tests

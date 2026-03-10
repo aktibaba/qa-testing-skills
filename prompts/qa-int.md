@@ -74,7 +74,28 @@ For each integration point, decide:
 
 ---
 
-## Step 3 — Setup Test Environment
+## Step 3 — Present Plan & Get Approval
+
+Present the plan to the user as a concise summary:
+- Detected stack, framework, and tool choices
+- Risk-prioritized list of what will be generated
+- Proposed file/folder structure
+- Key configuration decisions
+- Estimated output (file count, test count, etc.)
+
+**STOP here and wait for user approval. Do NOT generate any files, configs, or code until the user explicitly confirms the plan.**
+
+The user may:
+- Approve as-is → proceed to implementation steps
+- Request changes → revise the plan and present again
+- Reduce or expand scope → adjust accordingly
+- Ask questions → answer before proceeding
+
+Only after receiving explicit approval (e.g., "proceed", "onay", "devam", "looks good"), continue to the next step.
+
+---
+
+## Step 4 — Setup Test Environment
 
 Create Docker-based test infrastructure:
 
@@ -108,7 +129,7 @@ tests/integration/
 
 ---
 
-## Step 4 — Generate Tests
+## Step 5 — Generate Tests
 
 ### Database Integration Tests:
 ```
@@ -153,7 +174,7 @@ describe('API Contract: /users')
 
 ---
 
-## Step 5 — Validate & Report
+## Step 6 — Validate & Report
 
 ### Quality Checklist
 - [ ] Each test identifies the two systems being tested together

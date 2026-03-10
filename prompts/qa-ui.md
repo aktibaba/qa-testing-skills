@@ -63,7 +63,28 @@ Define what to test across:
 
 ---
 
-## Step 3 — Setup Framework
+## Step 3 — Present Plan & Get Approval
+
+Present the plan to the user as a concise summary:
+- Detected stack, framework, and tool choices
+- Risk-prioritized list of what will be generated
+- Proposed file/folder structure
+- Key configuration decisions
+- Estimated output (file count, test count, etc.)
+
+**STOP here and wait for user approval. Do NOT generate any files, configs, or code until the user explicitly confirms the plan.**
+
+The user may:
+- Approve as-is → proceed to implementation steps
+- Request changes → revise the plan and present again
+- Reduce or expand scope → adjust accordingly
+- Ask questions → answer before proceeding
+
+Only after receiving explicit approval (e.g., "proceed", "onay", "devam", "looks good"), continue to the next step.
+
+---
+
+## Step 4 — Setup Framework
 
 Create the test infrastructure:
 
@@ -116,7 +137,7 @@ Create a reusable auth helper that:
 
 ---
 
-## Step 4 — Generate E2E Tests
+## Step 5 — Generate E2E Tests
 
 For each critical flow, generate tests following this pattern:
 
@@ -138,7 +159,7 @@ describe('User Flow: [name]')
 
 ---
 
-## Step 5 — Visual & Accessibility Tests
+## Step 6 — Visual & Accessibility Tests
 
 ### Visual Regression:
 - Capture screenshots of key pages in stable states
@@ -153,7 +174,7 @@ describe('User Flow: [name]')
 
 ---
 
-## Step 6 — Validate & Report
+## Step 7 — Validate & Report
 
 After generating all tests:
 
